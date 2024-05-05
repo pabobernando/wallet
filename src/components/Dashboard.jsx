@@ -6,6 +6,7 @@ import DetailBalance from './DetailBalance';
 import { cosmoshub, osmosis, celestia } from "graz/chains";
 import { BalanceList } from '../ui/balance-list';
 import { mainnetChains } from '../utils/graz';
+import { useState, useEffect } from 'react';
 
 
 const user = {
@@ -38,6 +39,10 @@ export default function Dashboard() {
     multiChain: true
   });
   
+  useEffect(() => {
+    console.log('Mainnet Chains:', mainnetChains);
+  }, []);
+  
 
   const { connect } = useConnect();
   const { disconnect } = useDisconnect();
@@ -50,7 +55,8 @@ export default function Dashboard() {
     isConnected
       ? disconnect()
       : connect({
-          chainId: [osmosis.chainId,cosmoshub.chainId,celestia.chainId],
+          // chainId: [osmosis.chainId,cosmoshub.chainId,celestia.chainId],
+          chainId: mainnetChains.map(chain => chain.chainId)
         });
         
   }
@@ -216,8 +222,11 @@ export default function Dashboard() {
           <header className="py-10">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <h1 className="text-3xl font-bold tracking-tight text-white">Kewr Dashboard</h1>
-              <BalanceList />
+              {mainnetChains.map((chain) => (
+                <div key={chain.chainId} chain={chain} />
+              ))}
             </div>
+            <BalanceList />
           </header>
         </div>
 
@@ -233,10 +242,11 @@ export default function Dashboard() {
         ) : null}
         {account ? (
           <p>
-            Wallet address: <code>{account[osmosis.chainId].bech32Address}</code>
-            Wallet address: <code>{account[cosmoshub.chainId].bech32Address}</code>
-            Wallet address: <code>{account[celestia.chainId].bech32Address}</code>
-            
+            {Object.keys(account).map(chainId => (
+              <span key={chainId}>
+                 ({chainId}):<code>{account[chainId]?.bech32Address}</code><br />
+              </span>
+            ))}
           </p>
         ) : null}
             </div>
