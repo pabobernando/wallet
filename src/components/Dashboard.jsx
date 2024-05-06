@@ -34,13 +34,31 @@ function classNames(...classes) {
 
 export default function Dashboard() {
 
+  const [dataOsmo, setDataOsmo] = useState()
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const { data: account, isConnected, isConnecting, isDisconnected, isReconnecting } = useAccount({
     chainId: [osmosis.chainId,cosmoshub.chainId,celestia.chainId],
     multiChain: true
   });
   
   useEffect(() => {
-    console.log('Mainnet Chains:', mainnetChains);
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('https://rest-osmo.kewrnode.com/osmosis/pool-incentives/v1beta1/incentivized_pools');
+        const jsonData = await response.json();
+        setDataOsmo(jsonData);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+    console.log("tes123",dataOsmo)
   }, []);
   
 
@@ -252,7 +270,7 @@ export default function Dashboard() {
             </div>
           </div>
         </main>
-            <DetailBalance />
+            {/* <DetailBalance /> */}
       </div>
       
     </>
