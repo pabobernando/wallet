@@ -2,8 +2,8 @@ import { WalletType } from "graz";
 import { axelar, cosmoshub, osmosis, sommelier, stargaze } from "graz/chains";
 
 export const mainnetChains = [
-  { ...cosmoshub, rpc: "https://rpc-cosmos.kewrnode.com", rest: "https://rest-cosmos.kewrnode.com" },
-  { ...osmosis, rpc: "https://rpc-osmo.kewrnode.com", rest: "https://rest-osmo.kewrnode.com" },
+   { ...cosmoshub, rpc: "https://localhost:3000/rpc-cosmos", rest: "https://rest-cosmos.kewrnode.com" },
+  { ...osmosis, rpc: "https://localhost:3000/rpc-osmo", rest: "https://rest-osmo.kewrnode.com" },
 ];
 
 

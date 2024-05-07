@@ -49,6 +49,7 @@ export default function Dashboard() {
       try {
         const response = await fetch('https://rest-osmo.kewrnode.com/osmosis/pool-incentives/v1beta1/incentivized_pools');
         const jsonData = await response.json();
+        console.log("halo bos",jsonData)
         setDataOsmo(jsonData);
       } catch (error) {
         setError(error);
@@ -58,7 +59,6 @@ export default function Dashboard() {
     };
 
     fetchData();
-    console.log("tes123",dataOsmo)
   }, []);
   
 
