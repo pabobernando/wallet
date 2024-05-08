@@ -270,7 +270,7 @@ export default function Dashboard() {
             </div>
           </div>
         </main>
-            {/* <DetailBalance /> */}
+            <DetailBalance />
       </div>
       
     </>
