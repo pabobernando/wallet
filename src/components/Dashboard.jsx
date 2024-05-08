@@ -4,10 +4,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useAccount, useActiveChainIds, useConnect, useDisconnect, useBalances } from "graz";
 import DetailBalance from './DetailBalance';
 import { cosmoshub, osmosis, celestia } from "graz/chains";
-import { BalanceList } from '../ui/balance-list';
 import { mainnetChains } from '../utils/graz';
 import { useState, useEffect } from 'react';
-
 
 const user = {
   name: 'Tom Cook',
@@ -39,7 +37,7 @@ export default function Dashboard() {
   const [error, setError] = useState(null);
 
   const { data: account, isConnected, isConnecting, isDisconnected, isReconnecting } = useAccount({
-    chainId: [osmosis.chainId,cosmoshub.chainId,celestia.chainId],
+    chainId: [osmosis.chainId,],
     multiChain: true
   });
   
@@ -244,7 +242,6 @@ export default function Dashboard() {
                 <div key={chain.chainId} chain={chain} />
               ))}
             </div>
-            <BalanceList />
           </header>
         </div>
 

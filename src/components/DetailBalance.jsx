@@ -2,6 +2,8 @@ import React from 'react'
 import Btc from '/btc.svg'
 import Upm from '/upm.svg'
 import Vg from '/vg.svg'
+import { BalanceList } from '../ui/balance-list'
+import { BalanceStaked } from '../ui/balance-stake'
 
 function DetailBalance() {
   return (
@@ -32,7 +34,7 @@ function DetailBalance() {
                   </a>
                 </h3>
                 <p aria-hidden="true" className="mt-1 text-sm text-black">
-                  Tes123
+                  <BalanceList />
                 </p>
               </div>
             </div>
@@ -52,11 +54,11 @@ function DetailBalance() {
                 <h3 className="font-semibold text-white">
                   <a href="#">
                     <span className="" />
-                    Total Available Value
+                    Total Stake Balances
                   </a>
                 </h3>
                 <p aria-hidden="true" className="mt-1 text-sm text-white">
-                  Tes123
+                  <BalanceStaked />
                 </p>
               </div>
             </div>
