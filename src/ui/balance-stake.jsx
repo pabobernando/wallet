@@ -9,7 +9,7 @@ export const BalanceStaked = () => {
 
   return (
     <div>
-      Balances :
+      
       {isLoading ? (
         "Fetching staked balance..."
       ) : balanceStaked && Object.entries(balanceStaked).map(([chainId, coin]) => {

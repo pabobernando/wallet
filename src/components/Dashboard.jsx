@@ -41,23 +41,7 @@ export default function Dashboard() {
     multiChain: true
   });
   
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch('https://rest-osmo.kewrnode.com/osmosis/pool-incentives/v1beta1/incentivized_pools');
-        const jsonData = await response.json();
-        console.log("halo bos",jsonData)
-        setDataOsmo(jsonData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    fetchData();
-  }, []);
   
 
   const { connect } = useConnect();
